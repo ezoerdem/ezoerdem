@@ -1,0 +1,133 @@
+#SMOTE tekniği kullanılmadan oluşturulan model kodları
+
+
+#LİNEAR ÇEKİRDEK
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+dataset = pd.read_excel("Dataset.xlsx")
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+
+from sklearn.model_selection import train_test_split
+XTrain, XTest, yTrain, yTest = train_test_split(X, y, test_size = 0.25, random_state = 0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+XTrain = sc.fit_transform(XTrain)
+XTest = sc.transform(XTest)
+
+# training the kernel SVM model
+from sklearn.svm import SVC # import SVC model
+classifier = SVC(kernel = 'linear', random_state = 0) # creat model's object
+classifier.fit(XTrain, yTrain) # fits the model to the training data
+
+# predicting the test set
+y_predict = classifier.predict(XTest)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+con_matrx = confusion_matrix(yTest, y_predict)
+print(con_matrx)
+accuracy_score(yTest, y_predict)
+
+
+
+
+#RBF ÇEKİRDEK
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+dataset = pd.read_excel("Dataset.xlsx")
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+
+from sklearn.model_selection import train_test_split
+XTrain, XTest, yTrain, yTest = train_test_split(X, y, test_size = 0.25, random_state = 0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+XTrain = sc.fit_transform(XTrain)
+XTest = sc.transform(XTest)
+
+# training the kernel SVM model
+from sklearn.svm import SVC # import SVC model
+classifier = SVC(kernel = 'rbf', gamma=0.09 , C=10 , random_state = 0) # creat model's object
+classifier.fit(XTrain, yTrain) # fits the model to the training data
+
+# predicting the test set
+y_predict = classifier.predict(XTest)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+con_matrx = confusion_matrix(yTest, y_predict)
+print(con_matrx)
+accuracy_score(yTest, y_predict)
+
+
+
+
+
+#POLYÇEKİRDEK
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+dataset = pd.read_excel("Dataset.xlsx")
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+
+from sklearn.model_selection import train_test_split
+XTrain, XTest, yTrain, yTest = train_test_split(X, y, test_size = 0.25, random_state = 0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+XTrain = sc.fit_transform(XTrain)
+XTest = sc.transform(XTest)
+
+# training the kernel SVM model
+from sklearn.svm import SVC # import SVC model
+classifier = SVC(kernel = 'poly', degree=2 , gamma=0.9 , random_state = 0) # creat model's object
+classifier.fit(XTrain, yTrain) # fits the model to the training data
+
+# predicting the test set
+y_predict = classifier.predict(XTest)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+con_matrx = confusion_matrix(yTest, y_predict)
+print(con_matrx)
+accuracy_score(yTest, y_predict)
+
+
+
+
+
+#SİGMOİD ÇEKİRDEK
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+dataset = pd.read_excel("Dataset.xlsx")
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+
+from sklearn.model_selection import train_test_split
+XTrain, XTest, yTrain, yTest = train_test_split(X, y, test_size = 0.25, random_state = 0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+XTrain = sc.fit_transform(XTrain)
+XTest = sc.transform(XTest)
+
+# training the kernel SVM model
+from sklearn.svm import SVC # import SVC model
+classifier = SVC(kernel = 'sigmoid', gamma=0.01 , random_state = 0) # creat model's object
+classifier.fit(XTrain, yTrain) # fits the model to the training data
+
+# predicting the test set
+y_predict = classifier.predict(XTest)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+con_matrx = confusion_matrix(yTest, y_predict)
+print(con_matrx)
+accuracy_score(yTest, y_predict)
