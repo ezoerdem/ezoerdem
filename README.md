@@ -15,4 +15,6 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
+BİR TARIM ÜRÜNÜ SINIFLANDIRMA PROBLEMİNE UYGULANAN DESTEK VEKTÖR MAKİNESİ MODELİNDE ÇEKİRDEK FONKSİYONLARININ ETKİLİLİĞİNİN ARAŞTIRILMASI 
+konulu tezimde yaptığım çalışmaların kodları burada verilmiştir.
 
