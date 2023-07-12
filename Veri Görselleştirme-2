@@ -1,0 +1,24 @@
+from sklearn.linear_model import RANSACRegressor
+from sklearn.datasets import make_regression
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from imblearn.over_sampling import SMOTE
+
+df = pd.read_excel("Dataset.xlsx")
+
+seker = df[df.Class=='SEKER']
+dermason = df[df.Class=='DERMASON']
+
+fig, ax = plt.subplots()
+fig.set_size_inches(13, 7) # adjusting the length and width of plot
+
+# lables and scatter points
+ax.scatter(seker ['Perimeter'], seker ['Compactness'], label="SEKER", facecolor="blue" , marker='*')
+ax.scatter(dermason['Perimeter'], dermason['Compactness'], label="DERMASON", facecolor="green" , marker='.')
+
+ax.set_xlabel("Perimeter")
+ax.set_ylabel("Compactness")
+ax.grid()
+#ax.set_title("")
+ax.legend()
