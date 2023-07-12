@@ -1,0 +1,197 @@
+#SMOTE tekniği kullanılarak elde edilen model kodları
+
+
+#POLY ÇEKİRDEK
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from imblearn.over_sampling import SMOTE
+
+dataset = pd.read_excel("Dataset.xlsx")
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+
+from sklearn.model_selection import train_test_split
+XTrain, XTest, yTrain, yTest = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+XTrain = sc.fit_transform(XTrain)
+XTest = sc.transform(XTest)
+
+print("Before OverSampling, counts of label '1': {}".format(sum(yTrain == 1)))
+print("Before OverSampling, counts of label '0': {} \n".format(sum(yTrain == 0)))
+
+# import SMOTE module from imblearn library
+# pip install imblearn (if you don't have imblearn in your system)
+from imblearn.over_sampling import SMOTE
+sm = SMOTE(random_state = 2)
+X_train_res, y_train_res = sm.fit_resample(XTrain, yTrain.ravel())
+
+print('After OverSampling, the shape of train_X: {}'.format(X_train_res.shape))
+print('After OverSampling, the shape of train_y: {} \n'.format(y_train_res.shape))
+
+print("After OverSampling, counts of label '1': {}".format(sum(y_train_res == 1)))
+print("After OverSampling, counts of label '0': {}".format(sum(y_train_res == 0)))
+
+# training the kernel SVM model
+from sklearn.svm import SVC # import SVC model
+classifier = SVC(kernel = 'poly', degree=2 , gamma=1 , random_state = 0) # creat model's object
+classifier.fit(X_train_res, y_train_res) # fits the model to the training data
+
+# predicting the test set
+y_predict = classifier.predict(XTest)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+con_matrx = confusion_matrix(yTest, y_predict)
+print(con_matrx)
+accuracy_score(yTest, y_predict)
+
+
+
+
+
+#SİGMOİD ÇEKİRDEK
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from imblearn.over_sampling import SMOTE
+
+dataset = pd.read_excel("Dataset.xlsx")
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+
+from sklearn.model_selection import train_test_split
+XTrain, XTest, yTrain, yTest = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+XTrain = sc.fit_transform(XTrain)
+XTest = sc.transform(XTest)
+
+print("Before OverSampling, counts of label '1': {}".format(sum(yTrain == 1)))
+print("Before OverSampling, counts of label '0': {} \n".format(sum(yTrain == 0)))
+
+# import SMOTE module from imblearn library
+# pip install imblearn (if you don't have imblearn in your system)
+from imblearn.over_sampling import SMOTE
+sm = SMOTE(random_state = 2)
+X_train_res, y_train_res = sm.fit_resample(XTrain, yTrain.ravel())
+
+print('After OverSampling, the shape of train_X: {}'.format(X_train_res.shape))
+print('After OverSampling, the shape of train_y: {} \n'.format(y_train_res.shape))
+
+print("After OverSampling, counts of label '1': {}".format(sum(y_train_res == 1)))
+print("After OverSampling, counts of label '0': {}".format(sum(y_train_res == 0)))
+
+# training the kernel SVM model
+from sklearn.svm import SVC # import SVC model
+classifier = SVC(kernel = 'sigmoid', gamma=0.01 , random_state = 0) # creat model's object
+classifier.fit(X_train_res, y_train_res) # fits the model to the training data
+
+# predicting the test set
+y_predict = classifier.predict(XTest)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+con_matrx = confusion_matrix(yTest, y_predict)
+print(con_matrx)
+accuracy_score(yTest, y_predict)
+
+
+
+
+#RBF ÇEKİRDEK
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from imblearn.over_sampling import SMOTE
+
+dataset = pd.read_excel("Dataset.xlsx")
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+
+from sklearn.model_selection import train_test_split
+XTrain, XTest, yTrain, yTest = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+XTrain = sc.fit_transform(XTrain)
+XTest = sc.transform(XTest)
+
+print("Before OverSampling, counts of label '1': {}".format(sum(yTrain == 1)))
+print("Before OverSampling, counts of label '0': {} \n".format(sum(yTrain == 0)))
+
+# import SMOTE module from imblearn library
+# pip install imblearn (if you don't have imblearn in your system)
+from imblearn.over_sampling import SMOTE
+sm = SMOTE(random_state = 2)
+X_train_res, y_train_res = sm.fit_resample(XTrain, yTrain.ravel())
+
+print('After OverSampling, the shape of train_X: {}'.format(X_train_res.shape))
+print('After OverSampling, the shape of train_y: {} \n'.format(y_train_res.shape))
+
+print("After OverSampling, counts of label '1': {}".format(sum(y_train_res == 1)))
+print("After OverSampling, counts of label '0': {}".format(sum(y_train_res == 0)))
+
+# training the kernel SVM model
+from sklearn.svm import SVC # import SVC model
+classifier = SVC(kernel = 'rbf', gamma=0.09 , C=10 , random_state = 0) # creat model's object
+classifier.fit(X_train_res, y_train_res) # fits the model to the training data
+
+# predicting the test set
+y_predict = classifier.predict(XTest)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+con_matrx = confusion_matrix(yTest, y_predict)
+print(con_matrx)
+accuracy_score(yTest, y_predict)
+
+
+
+
+
+#LİNEAR ÇEKİRDEK
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from imblearn.over_sampling import SMOTE
+
+dataset = pd.read_excel("Dataset.xlsx")
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+
+from sklearn.model_selection import train_test_split
+XTrain, XTest, yTrain, yTest = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+XTrain = sc.fit_transform(XTrain)
+XTest = sc.transform(XTest)
+
+print("Before OverSampling, counts of label '1': {}".format(sum(yTrain == 1)))
+print("Before OverSampling, counts of label '0': {} \n".format(sum(yTrain == 0)))
+
+# import SMOTE module from imblearn library
+# pip install imblearn (if you don't have imblearn in your system)
+from imblearn.over_sampling import SMOTE
+sm = SMOTE(random_state = 2)
+X_train_res, y_train_res = sm.fit_resample(XTrain, yTrain.ravel())
+
+print('After OverSampling, the shape of train_X: {}'.format(X_train_res.shape))
+print('After OverSampling, the shape of train_y: {} \n'.format(y_train_res.shape))
+
+print("After OverSampling, counts of label '1': {}".format(sum(y_train_res == 1)))
+print("After OverSampling, counts of label '0': {}".format(sum(y_train_res == 0)))
+
+# training the kernel SVM model
+from sklearn.svm import SVC # import SVC model
+classifier = SVC(kernel = 'linear', random_state = 0) # creat model's object
+classifier.fit(X_train_res, y_train_res) # fits the model to the training data
+
+# predicting the test set
+y_predict = classifier.predict(XTest)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+con_matrx = confusion_matrix(yTest, y_predict)
+print(con_matrx)
+accuracy_score(yTest, y_predict)
